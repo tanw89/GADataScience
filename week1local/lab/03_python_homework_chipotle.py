@@ -12,7 +12,7 @@ Hint: This is a TSV file, and csv.reader() needs to be told how to handle it.
 
 import csv
 
-with open('C:/Users/tanw/Desktop/LocalCopy-GACourse/GA_DAT5_Local/week1/chipotle-master/chipotle-master/orders.tsv') as f:
+with open('C:/Users/tanw/Desktop/LocalCopy-GACourse/GA_DAT5_Local/week1local/chipotle-master/chipotle-master/orders.tsv') as f:
     file_nested_list = [row for row in csv.reader(f, delimiter="\t")]
 print file_nested_list[0]
 '''
@@ -86,6 +86,7 @@ for row in data:
 # 5.40
 round(toppings/ float(burritos), 2)  
 
+#OR You can import nunmpy and use mean
 '''
 ADVANCED LEVEL
 PART 6: Create a dictionary in which the keys represent chip orders and
@@ -118,6 +119,28 @@ for row in data:
         dchips[row[2]] += int(row[1])
 
 print dchips
+
+# OR can use counter
+#OR this
+
+from collections import defaultdict
+
+chippys = defaultdict(int)
+
+for row in data:
+    if 'chips' in row[2].lower():
+        chippys[row[2].lower()] += int(row[1])
+
+for key, value in sorted(chippys.iteritems()):
+    print key.rjust(48), ":", str(value).rjust(4)
+
 '''
 BONUS: Think of a question about this data that interests you, and then answer it!
 '''
+# Number of unique orders above $10
+goodmoney = []
+for row in data:
+    if float(row[4][1:-1]) > float(10):
+        goodmoney.append(row[0])
+orders_more_than_10 = len(set(goodmoney))
+print orders_more_than_10

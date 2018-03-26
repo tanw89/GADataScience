@@ -240,6 +240,9 @@ top = r.json()  # store that dictionary
 
 # store the book data
 books = top['results']['books']    # list of 15 dictionaries
-
+print(top['results'].keys())
+print(books.keys())
+type(books)
 # create a list of book titles only
 titles = [book['title'] for book in books]  # can iterate through list to access dictionaries
+print titles
